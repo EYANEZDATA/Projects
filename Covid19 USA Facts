@@ -1,0 +1,64 @@
+SELECT *
+FROM `bigquery-public-data.covid19_usafacts.summary` 
+
+--Looking AT Confirmed Cases vs. Deaths--
+SELECT confirmed_cases,deaths
+FROM `bigquery-public-data.covid19_usafacts.summary`
+
+SELECT AVG(confirmed_cases),AVG(deaths)
+FROM `bigquery-public-data.covid19_usafacts.summary` 
+
+--Confirmed Cases IN Descending Order--
+SELECT confirmed_cases
+FROM `bigquery-public-data.covid19_usafacts.summary`
+ORDER BY confirmed_cases DESC
+
+SELECT DISTINCT confirmed_cases
+FROM `bigquery-public-data.covid19_usafacts.summary`
+ORDER BY confirmed_cases DESC 
+
+--Deaths IN Descending Order--
+SELECT deaths
+FROM `bigquery-public-data.covid19_usafacts.summary`
+ORDER BY deaths DESC
+
+SELECT DISTINCT deaths
+FROM `bigquery-public-data.covid19_usafacts.summary`
+ORDER BY deaths DESC 
+
+--Confirming more than 1000 confirmed cases AND deaths IN one day--
+ SELECT DISTINCT confirmed_cases
+FROM `bigquery-public-data.covid19_usafacts.summary`
+WHERE confirmed_cases > 1000
+
+SELECT DISTINCT deaths
+FROM `bigquery-public-data.covid19_usafacts.summary`
+WHERE deaths > 1000 
+
+--NOW PUTTING THEM TOGETHER TO COMPARE AND CONTRAST--
+SELECT DISTINCT confirmed_cases,deaths
+FROM `bigquery-public-data.covid19_usafacts.summary`
+WHERE confirmed_cases >1000AND deaths > 1000 
+  
+--Confirming more than 5,000 confirmed cases AND deaths IN one day--
+SELECT DISTINCT confirmed_cases
+FROM `bigquery-public-data.covid19_usafacts.summary`
+WHERE confirmed_cases > 5000
+
+SELECT DISTINCT deaths
+FROM`bigquery-public-data.covid19_usafacts.summary` 
+WHERE deaths > 5000
+
+--NOW PUTTING THEM TOGETHER TO COMPARE AND CONTRAST--
+SELECT DISTINCT confirmed_cases,deaths 
+FROM `bigquery-public-data.covid19_usafacts.summary`
+WHEREconfirmed_cases > 5000 AND deaths > 5000
+
+
+--TOTAL NUMBER OF CASES AND DEATHS-- 
+SELECT SUM(confirmed_cases),SUM(deaths) 
+FROM `bigquery-public-data.covid19_usafacts.summary`
+
+--DIFFERENCE BETWEEN NUMBER OF CONFIRMED CASES AND DEATHS--
+SELECT SUM(confirmed_cases) - SUM(deaths) AS difference  
+FROM `bigquery-public-data.covid19_usafacts.summary`
